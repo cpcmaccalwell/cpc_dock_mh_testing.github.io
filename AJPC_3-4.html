@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Meta tags for character encoding and responsive design -->
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<!-- Title of the webpage displayed in the browser tab -->
+<title>Dock 03 &amp; 04</title>
+<style>
+        /* General styling for the body */
+        body {
+            font-family: Arial, sans-serif; /* Set the font family */
+            background-color: #000; /* Set the background color to black */
+            color: white; /* Set the font color to white */
+            display: flex;
+            justify-content: center; /* Center the table horizontally */
+            align-items: center; /* Center the table vertically */
+            height: 100vh; /* Full viewport height */
+            margin: 0; /* Remove default margin */
+            flex-direction: column; /* Stack the content vertically */
+        }
+
+        /* Styling for the table */
+        table {
+            width: 90%; /* Set the table width to 80% of the screen */
+            max-width: 1100px; /* Set a maximum width for the table */
+            border-collapse: collapse; /* Collapse borders between table cells */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add shadow effect around the table */
+            table-layout: fixed; /* Use fixed layout to control column widths */
+            position: relative; /* Set relative position to position the datetime inside the table */
+        }
+
+        /* Styling for the current date and time container */
+        #datetime {
+            position: absolute;
+            top: 110px; /* Position the date and time 10px from the top */
+            Right: 150px; /* Position the date and time 20px from the right */
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+        }
+ 
+         #lastRefresh {
+        position: absolute;
+            bottom: 120px; /* Position the date and time 10px from the top */
+            Right: 150px; /* Position the date and time 20px from the right */
+            color: white;
+            font-size: 10px;
+         
+        }
+
+        /* Styling for table headers (th) and data cells (td) */
+        th, td {
+            padding: 10px; /* Add padding inside cells */
+            text-align: center; /* Center the text inside cells */
+            border: 1px solid #ddd; /* Add a light gray border to the cells */
+        }
+
+        /* Styling for header cells (th) */
+        th {
+            background-color: #333; /* Dark background for the header */
+            color: white; /* White text in the header */
+        }
+
+        /* Styling for table data cells (td) */
+        td {
+            background-color: #222; /* Dark background for the data cells */
+        }
+
+        /* Styling for alternating rows (even rows) */
+        tr:nth-child(even) td {
+            background-color: #555; /* Slightly lighter background for alternate rows */
+        }
+
+        /* Styling for table cells that span two columns (colspan="2") */
+        td[colspan="2"] {
+            text-align: center; /* Center text in cells with colspan="2" */
+      
+        }
+
+        /* Remove margin from <p> elements inside table cells */
+        td p {
+            margin: 0; /* Remove default margin */
+        }
+
+        /* Set widths for each column */
+        td:nth-child(1), th:nth-child(1) {
+            width: 25%; /* First column (left) */
+        }
+        
+        td:nth-child(2), th:nth-child(2) {
+            width: 15%; /* Second column (middle), make it narrower */
+        }
+        
+        td:nth-child(3), th:nth-child(3) {
+            width: 25%; /* Third column (right), same size as first column */
+        }
+
+        td:nth-child(4), th:nth-child(4),
+        td:nth-child(5), th:nth-child(5) {
+            width: 15%; /* For the last two columns, same width */
+        }
+
+        #row1_col2, #row2_col2, #row3_col2, #row4_col2, #row5_col2, #row6_col3, #row8_col3, #row10_col2, #row11_col2  {
+            background-color: #FFE699; color: #000;  /* New background and font colors for the middle column */
+        }
+
+  #row6_col5, #row8_col5, #row6_col2, #row8_col2 {   /*add yellow color for the waiting headers*/
+    color: yellow;
+  }
+
+
+
+    </style>
+</head>
+<body>
+<!-- Main table structure -->
+<table>
+<!-- Date and Time -->
+<div id="datetime"></div>
+<div id="lastRefresh"></div>
+<tbody>
+<tr>
+<td colspan="2" id="row1_col1" style="font-size: 30px;"><strong>← 03</strong></td> <!-- Merged two cells in the first column, displaying '01' -->
+<td id="row1_col2"><strong>AJPC</strong><br/><strong>LOOSE LOAD DOCK</strong></td> <!-- Display location and load info -->
+<td colspan="2" id="row1_col3" style="font-size: 30px;"><strong>04 →</strong></td> <!-- Merged two cells in the last column, displaying '02' -->
+</tr>
+<!-- Second row: Service numbers -->
+<tr>
+<td colspan="2" id="row2_col1">M456AJ</td> <!-- Carrier or trailer ID in the first two columns -->
+<td id="row2_col2">Service #</td> <!-- Label for the third column -->
+<td colspan="2" id="row2_col3">K403AJ</td> <!-- Another carrier or trailer ID in the last two columns -->
+</tr>
+<!-- Third row: Carrier/Trailer numbers -->
+<tr>
+<td colspan="2" id="row3_col1">C-CHALLENGER MOTOR FR. / CHALLC1037</td> <!-- First carrier/trailer number -->
+<td id="row3_col2">Carrier / Trailer #</td> <!-- Label for the third column -->
+<td colspan="2" id="row3_col3">KDS-KENDREW DIST SERVICE / KEND306862</td> <!-- Second carrier/trailer number -->
+</tr>
+<!-- Fourth row: Destination info -->
+<tr>
+<td colspan="2" id="row4_col1">M1X-ALBERT JACKSON</td> <!-- First destination -->
+<td id="row4_col2">Destination</td> <!-- Label for the third column -->
+<td colspan="2" id="row4_col3">M1X-ALBERT JACKSON</td> <!-- Second destination -->
+</tr>
+<!-- Fifth row: Loading status -->
+<tr>
+<td colspan="2" id="row5_col1">Arrived</td> <!-- Status of loading in the first two columns -->
+<td id="row5_col2">Loading Status</td> <!-- Label for the third column -->
+<td colspan="2" id="row5_col3">Arrived</td> <!-- Loading status and time in the last two columns -->
+</tr>
+<!-- Sixth row: Loose Load details -->
+<tr>
+<td id="row6_col1">Loaded</td> <!-- Number of loaded items -->
+<td id="row6_col2">Waiting</td> <!-- Number of waiting items -->
+<td id="row6_col3" rowspan="2">Loose Load</td> <!-- Label for loose load status spanning two rows -->
+<td id="row6_col4">Loaded</td> <!-- Number of loaded items -->
+<td id="row6_col5">Waiting</td> <!-- Number of waiting items -->
+</tr>
+<!-- Seventh row: Loose Load data -->
+<tr>
+<td id="row7_col1">TBD</td> <!-- Loaded items count -->
+<td id="row7_col2">TBD</td> <!-- Waiting items count -->
+<td id="row7_col3">TBD</td> <!-- Loaded items count for the second column -->
+<td id="row7_col4">TBD</td> <!-- Waiting items count for the second column -->
+</tr>
+<!-- Eighth row: Shipping Units details -->
+<tr>
+<td id="row8_col1">Loaded</td> <!-- Number of loaded shipping units -->
+<td id="row8_col2">Waiting</td> <!-- Number of waiting shipping units -->
+<td id="row8_col3" rowspan="2">Shipping Units</td> <!-- Label for shipping units status spanning two rows -->
+<td id="row8_col4">Loaded</td> <!-- Number of loaded shipping units -->
+<td id="row8_col5">Waiting</td> <!-- Number of waiting shipping units -->
+</tr>
+<!-- Ninth row: Shipping Units data -->
+<tr>
+<td id="row9_col1">29</td> <!-- Loaded shipping units count -->
+<td id="row9_col2">TBD</td> <!-- Waiting shipping units count -->
+<td id="row9_col3">29</td> <!-- Loaded shipping units count for the second column -->
+<td id="row9_col4">TBD</td> <!-- Waiting shipping units count for the second column -->
+</tr>
+<!-- Tenth row: Critical cut-off information -->
+<tr>
+<td colspan="2" id="row10_col1"></td> <!-- Critical cut-off time for the first column -->
+<td id="row10_col2">Critical Cut-off</td> <!-- Label for the third column -->
+<td colspan="2" id="row10_col3"></td> <!-- Critical cut-off time for the last column -->
+</tr>
+<!-- Eleventh row: Scheduled dispatch time -->
+<tr>
+<td colspan="2" id="row11_col1"></td> <!-- Scheduled dispatch time for the first column -->
+<td id="row11_col2">Scheduled Dispatch Time</td> <!-- Label for the third column -->
+<td colspan="2" id="row11_col3"></td> <!-- Scheduled dispatch time for the last column -->
+</tr>
+</tbody>
+</table>
+<script>
+// Function to display current date and time
+function displayDateTime() {
+    const currentDate = new Date();
+
+    // Get the full month name and day
+    const options = { year: 'numeric', month: 'long', day: '2-digit' };
+    const dateString = currentDate.toLocaleDateString('en-US', options);
+    
+    // Get the current time in hh:mm:ss format
+    const timeString = currentDate.toLocaleTimeString('en-US', { hour12: true });
+
+    // Combine both date and time strings
+    const formattedDateTime = `${timeString} | ${dateString}`;
+
+    // Update the content in the 'datetime' div
+    document.getElementById('datetime').textContent = formattedDateTime;
+}
+
+// Function to display the last refresh time
+function displayLastRefreshTime() {
+    const lastRefresh = localStorage.getItem('lastRefresh');
+    if (lastRefresh) {
+        document.getElementById('lastRefresh').textContent = "Last Refreshed: " + lastRefresh;
+    } else {
+        document.getElementById('lastRefresh').textContent = "Last Refreshed: Never";
+    }
+}
+
+// Function to update the refresh time in localStorage and reload the page every 5 seconds
+function refreshPage() {
+    const currentDate = new Date().toLocaleString();
+    localStorage.setItem('lastRefresh', currentDate); // Store the current date and time in localStorage
+    window.location.reload(); // Refresh the page
+}
+
+// Call the functions when the page loads
+window.onload = function() {
+    displayDateTime(); // Display the initial time
+    displayLastRefreshTime(); // Display the last refresh time
+    setInterval(displayDateTime, 1000); // Update time every second
+    setInterval(refreshPage, 5000); // Refresh the page every 5 seconds (adjust interval as needed)
+};
+
+</script>
+</body>
+</html>
